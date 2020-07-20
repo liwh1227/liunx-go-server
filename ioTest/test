@@ -1,0 +1,18 @@
+sys_select() -> core_sys_select() -> do_select() -> 1. poll_initwait()
+                                                 -> 2. f_op->poll() [ -> poll_wait() -> __pollwait() -> poll_get_entry() ]
+                                                 -> 3. [ block -> goto 2 ]
+                                                 -> 4. poll_freewait() -> free_poll_entry()
+
+pollwake() -> __pollwake()
+
+
+
+poll:
+sys_poll() -> do_sys_poll() -> poll_initwait()
+                            -> do_poll() -> 1. do_pollfd() -> f_op->poll() [ -> poll_wait() -> __pollwait() -> poll_get_entry() ]
+                                         -> 2. [ block -> goto 1 ]
+                            -> poll_freewait() -> free_poll_entry()
+
+pollwake() -> __pollwake()
+
+对比发现，select和poll最终都是通过调用poll_initwait()实现的描述符监听

@@ -12,24 +12,14 @@ func TestFD_CLR(t *testing.T) {
 }
 
 func TestFD_ISSET(t *testing.T) {
-	type args struct {
-		fd    int
-		fdSet *syscall.FdSet
+	fdSet := syscall.FdSet{Bits: [16]int64{1}}
+	got := FD_ISSET(5, &fdSet)
+	if got {
+		t.Log("is True")
+	} else {
+		t.Error("fd_isset error")
 	}
-	tests := []struct {
-		name string
-		args args
-		want bool
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := FD_ISSET(tt.args.fd, tt.args.fdSet); got != tt.want {
-				t.Errorf("FD_ISSET() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
 }
 
 func TestFD_SET(t *testing.T) {

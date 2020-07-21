@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	io_poll "linux/ioTest/ioPoll"
+	"linux/ioTest/single"
 )
 
 func main() {
@@ -12,20 +12,20 @@ func main() {
 	//	fmt.Println("start server err")
 	//}
 
-	/*sig := &single.SingleThread{}
+	sig := &single.SingleThread{}
 	err := sig.StartServer()
 	if err != nil {
 		fmt.Printf("[StartServer] has error.%s\n",err)
-	}*/
+	}
 
 	/*selectSer := ioSelect.Select{}
 	err := selectSer.StartServer()
 	if err != nil {
 		fmt.Printf("[select io] has error %s\n",selectSer)
 	}*/
-	pollSer := &io_poll.Poll{}
+	/*pollSer := &io_poll.Poll{}
 	err := pollSer.StartServer()
 	if err != nil {
 		fmt.Printf("err is %s\n", err)
-	}
+	}*/
 }

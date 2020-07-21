@@ -7,7 +7,7 @@ import (
 
 func main() {
 	i := 0
-	maxRoutine := 12800
+	maxRoutine := 10
 	for i < maxRoutine {
 		go func() {
 			client()
